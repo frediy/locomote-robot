@@ -1,5 +1,5 @@
 require "locomote_robot/version"
+require 'locomote_robot/robot'
 
 module LocomoteRobot
-  # Your code goes here...
 end
