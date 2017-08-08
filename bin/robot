@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "locomote_robot"
+
+# Valid commands
+
+# PLACE X,Y,FACING
+#   X integer
+#   Y integer
+#   FACING string in the set NORTH, EAST, SOUTH, WEST
+# MOVE
+# LEFT - turn left
+# RIGHT - turn right
+# REPORT - report position to stdout
+
+robot = LocomoteRobot::Robot.new()
+
+ARGF.each do |command, index|
+  robot.process_command!(command)
+
+  if robot.output?
+    puts robot.output
+    robot.clear_output!
+  end
+end
