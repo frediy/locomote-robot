@@ -224,7 +224,7 @@ RSpec.describe Robot do
         specify { expect{left}.to change{robot.facing}.to Robot::NORTH }
       end
 
-      context 'facing south'do
+      context 'facing south' do
         let (:facing) { Robot::SOUTH }
 
         specify { expect{left}.to change{robot.facing}.to Robot::EAST }
