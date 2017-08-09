@@ -69,12 +69,6 @@ class Robot
     end
   end
 
-  def output?
-  end
-
-  def clear_output!
-  end
-
 private
 
   def valid_place?(x, y, facing)
