@@ -61,79 +61,67 @@ RSpec.describe Robot do
         let (:x) { 0 }
         let (:y) { 5 }
 
-        specify { expect(robot.x).to eq nil }
-        specify { expect(robot.y).to eq nil }
-        specify { expect(robot.facing).to eq nil }
+        specify { expect(robot.placed?).to be false }
       end
 
       context 'east' do
         let (:x) { 5 }
         let (:y) { 0 }
 
-        specify { expect(robot.x).to eq nil }
-        specify { expect(robot.y).to eq nil }
-        specify { expect(robot.facing).to eq nil }
+        specify { expect(robot.placed?).to be false }
       end
 
       context 'south' do
         let (:x) { 0 }
         let (:y) { -1 }
 
-        specify { expect(robot.x).to eq nil }
-        specify { expect(robot.y).to eq nil }
-        specify { expect(robot.facing).to eq nil }
+        specify { expect(robot.placed?).to be false }
       end
 
       context 'west' do
         let (:x) { -1 }
         let (:y) { 0 }
 
-        specify { expect(robot.x).to eq nil }
-        specify { expect(robot.y).to eq nil }
-        specify { expect(robot.facing).to eq nil }
+        specify { expect(robot.placed?).to be false }
       end
+    end
+
+    shared_examples_for 'a successful #place' do
+      specify { expect(robot.x).to eq x }
+      specify { expect(robot.y).to eq y }
+      specify { expect(robot.facing).to eq facing }
     end
 
     context 'facing is valid' do
       context 'NORTH' do
         let(:facing) { Robot::NORTH }
 
-        specify { expect(robot.x).to eq x }
-        specify { expect(robot.y).to eq y }
-        specify { expect(robot.facing).to eq facing }
+        it_behaves_like 'a successful #place'
       end
 
       context 'EAST' do
         let(:facing) { Robot::EAST }
 
-        specify { expect(robot.x).to eq x }
-        specify { expect(robot.y).to eq y }
-        specify { expect(robot.facing).to eq facing }
+        it_behaves_like 'a successful #place'
       end
 
       context 'SOUTH' do
         let(:facing) { Robot::SOUTH }
 
-        specify { expect(robot.x).to eq x }
-        specify { expect(robot.y).to eq y }
-        specify { expect(robot.facing).to eq facing }
+        it_behaves_like 'a successful #place'
       end
 
       context 'WEST' do
         let(:facing) { Robot::WEST }
 
-        specify { expect(robot.x).to eq x }
-        specify { expect(robot.y).to eq y }
-        specify { expect(robot.facing).to eq facing }
+        it_behaves_like 'a successful #place'
       end
     end
 
     context 'facing is invalid' do
       let (:facing) { 'INVALID_FACING' }
 
-      specify { expect(robot.x).to eq nil }
-      specify { expect(robot.y).to eq nil }
-      specify { expect(robot.facing).to eq nil }
+      specify { expect(robot.placed?).to be false }
     end
   end
 
