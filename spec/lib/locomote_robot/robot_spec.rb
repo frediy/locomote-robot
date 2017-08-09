@@ -41,7 +41,7 @@ RSpec.describe Robot do
   describe '#place' do
     let (:x) { 0 }
     let (:y) { 0 }
-    let (:facing) { 'NORTH' }
+    let (:facing) { Robot::NORTH }
 
     subject (:place) { robot.place(x, y, facing) }
 
@@ -96,7 +96,7 @@ RSpec.describe Robot do
 
     context 'facing is valid' do
       context 'NORTH' do
-        let(:facing) { 'NORTH' }
+        let(:facing) { Robot::NORTH }
 
         specify { expect(robot.x).to eq x }
         specify { expect(robot.y).to eq y }
@@ -104,7 +104,7 @@ RSpec.describe Robot do
       end
 
       context 'EAST' do
-        let(:facing) { 'EAST' }
+        let(:facing) { Robot::EAST }
 
         specify { expect(robot.x).to eq x }
         specify { expect(robot.y).to eq y }
@@ -112,7 +112,7 @@ RSpec.describe Robot do
       end
 
       context 'SOUTH' do
-        let(:facing) { 'SOUTH' }
+        let(:facing) { Robot::SOUTH }
 
         specify { expect(robot.x).to eq x }
         specify { expect(robot.y).to eq y }
@@ -120,7 +120,7 @@ RSpec.describe Robot do
       end
 
       context 'WEST' do
-        let(:facing) { 'WEST' }
+        let(:facing) { Robot::WEST }
 
         specify { expect(robot.x).to eq x }
         specify { expect(robot.y).to eq y }
