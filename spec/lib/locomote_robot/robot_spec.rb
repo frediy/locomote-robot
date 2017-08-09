@@ -16,9 +16,7 @@ RSpec.describe Robot do
 
     subject (:place) { robot.place(x, y, facing) }
 
-    before do
-      place
-    end
+    before { place }
 
     context 'place on board' do
       let (:x) { 0 }
@@ -116,9 +114,7 @@ RSpec.describe Robot do
     subject (:move) { robot.move }
 
     context 'placed' do
-      before do
-        place
-      end
+      before { place }
 
       context 'facing north' do
         let (:x) { 0 }
@@ -205,29 +201,88 @@ RSpec.describe Robot do
   end
 
   describe '#left' do
+    let(:x) { 0 }
+    let(:y) { 0 }
+    let(:facing) { Robot::NORTH }
+
+    let(:place) { robot.place(x, y, facing) }
+
     subject (:left) { robot.left }
 
-    # facing north
-      # facing eastuu
-    # facing east
-      # facing north
-    # facing south
-      # facing east
-    # facing west
-      # facing south
+    context 'placed' do
+      before { place }
+
+      context 'facing north' do
+        let (:facing) { Robot::NORTH }
+
+        specify { expect{left}.to change{robot.facing}.to Robot::WEST }
+      end
+
+      context 'facing east' do
+        let (:facing) { Robot::EAST }
+
+        specify { expect{left}.to change{robot.facing}.to Robot::NORTH }
+      end
+
+      context 'facing south'do
+        let (:facing) { Robot::SOUTH }
+
+        specify { expect{left}.to change{robot.facing}.to Robot::EAST }
+      end
+
+      context 'facing west' do
+        let (:facing) { Robot::WEST }
+
+        specify { expect{left}.to change{robot.facing}.to Robot::SOUTH }
+      end
+    end
+
+    context 'unplaced' do
+      specify { expect{left}.to_not change{robot.facing} }
+    end
   end
 
   describe '#right' do
+    let(:x) { 0 }
+    let(:y) { 0 }
+    let(:facing) { Robot::NORTH }
+
+    let(:place) { robot.place(x, y, facing) }
+
     subject (:right) { robot.right }
 
-    # facing north
-      # facing east
-    # facing east
-      # facing south
-    # facing south
-      # facing west
-    # facing west
-      # facing north
+    context 'placed' do
+      before { place }
+
+      context 'facing north' do
+        let (:facing) { Robot::NORTH }
+
+        specify { expect{right}.to change{robot.facing}.to Robot::EAST }
+      end
+
+      context 'facing east' do
+        let (:facing) { Robot::EAST }
+
+        specify { expect{right}.to change{robot.facing}.to Robot::SOUTH }
+      end
+
+      context 'facing south'do
+        let (:facing) { Robot::SOUTH }
+
+        specify { expect{right}.to change{robot.facing}.to Robot::WEST }
+      end
+
+      context 'facing west' do
+        let (:facing) { Robot::WEST }
+
+        specify { expect{right}.to change{robot.facing}.to Robot::NORTH }
+      end
+
+    end
+
+    context 'unplaced' do
+      specify { expect{right}.to_not change{robot.facing} }
+    end
   end
 
   describe '#output?' do
