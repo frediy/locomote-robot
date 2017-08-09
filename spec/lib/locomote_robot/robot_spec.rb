@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe Robot do
-
-
   subject (:robot) { Robot.new }
 
   shared_examples_for 'a successful #place' do
@@ -14,12 +12,6 @@ RSpec.describe Robot do
   shared_examples_for 'position is unchanged' do
     specify { expect{move}.to_not change{x} }
     specify { expect{move}.to_not change{y} }
-  end
-
-  describe '#process_command' do
-    let (:command) {}
-
-    subject (:process_command!) { robot.process_command!(command) }
   end
 
   describe '#placed?' do

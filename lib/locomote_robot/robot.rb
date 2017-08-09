@@ -67,9 +67,6 @@ class Robot
     end
   end
 
-  def process_command!(command)
-  end
-
   def output?
   end
 
