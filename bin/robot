@@ -15,12 +15,8 @@ require "locomote_robot"
 # REPORT - report position to stdout
 
 robot = LocomoteRobot::Robot.new()
+command_interpreter = CommandInterpreter.new(robot)
 
 ARGF.each do |command, index|
-  robot.process_command!(command)
-
-  if robot.output?
-    puts robot.output
-    robot.clear_output!
-  end
+  command_interpreter.process_command(command)
 end
