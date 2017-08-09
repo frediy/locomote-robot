@@ -21,6 +21,8 @@ class Robot
   end
 
   def move
+    return unless placed?
+
     new_x, new_y = @x, @y
 
     case @facing

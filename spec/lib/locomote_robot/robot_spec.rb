@@ -206,9 +206,9 @@ RSpec.describe Robot do
     end
 
     context 'unplaced' do
-      specify { expect(robot.x).to eq nil }
-      specify { expect(robot.y).to eq nil }
-      specify { expect(robot.facing).to eq nil }
+      before { move }
+
+      specify { expect(robot.placed?).to be false }
     end
   end
 

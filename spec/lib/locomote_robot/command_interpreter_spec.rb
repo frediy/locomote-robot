@@ -19,17 +19,17 @@ RSpec.describe CommandInterpreter do
 
     describe 'MOVE' do
       let (:command) { 'MOVE' }
-      specify { expect(robot).to receive(:move) }
+      specify { expect(robot).to receive(:move); process_command }
     end
 
     describe 'LEFT' do
       let (:command) { 'LEFT' }
-      specify { expect(robot).to receive(:left) }
+      specify { expect(robot).to receive(:left); process_command }
     end
 
     describe 'RIGHT' do
       let (:command) { 'RIGHT' }
-      specify { expect(robot).to receive(:right) }
+      specify { expect(robot).to receive(:right); process_command }
     end
 
     describe 'REPORT' do
