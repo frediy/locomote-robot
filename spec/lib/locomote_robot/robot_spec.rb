@@ -1,7 +1,20 @@
 require 'spec_helper'
 
 RSpec.describe Robot do
+
+
   subject (:robot) { Robot.new }
+
+  shared_examples_for 'a successful #place' do
+    specify { expect(robot.x).to eq x }
+    specify { expect(robot.y).to eq y }
+    specify { expect(robot.facing).to eq facing }
+  end
+
+  shared_examples_for 'position is unchanged' do
+    specify { expect{move}.to_not change{x} }
+    specify { expect{move}.to_not change{y} }
+  end
 
   describe '#process_command' do
     let (:command) {}
@@ -86,12 +99,6 @@ RSpec.describe Robot do
       end
     end
 
-    shared_examples_for 'a successful #place' do
-      specify { expect(robot.x).to eq x }
-      specify { expect(robot.y).to eq y }
-      specify { expect(robot.facing).to eq facing }
-    end
-
     context 'facing is valid' do
       context 'NORTH' do
         let(:facing) { Robot::NORTH }
@@ -147,8 +154,7 @@ RSpec.describe Robot do
         context 'one step forward is not on the board' do
           let (:y) { 4 }
 
-          specify { expect{move}.to_not change{x} }
-          specify { expect{move}.to_not change{y} }
+          it_behaves_like 'position is unchanged'
         end
       end
 
@@ -166,8 +172,7 @@ RSpec.describe Robot do
         context 'one step forward is not on the board' do
           let (:x) { 4 }
 
-          specify { expect{move}.to_not change{x} }
-          specify { expect{move}.to_not change{y} }
+          it_behaves_like 'position is unchanged'
         end
       end
 
@@ -185,8 +190,7 @@ RSpec.describe Robot do
         context 'one step forward is not on the board' do
           let (:y) { 0 }
 
-          specify { expect{move}.to_not change{x} }
-          specify { expect{move}.to_not change{y} }
+          it_behaves_like 'position is unchanged'
         end
       end
 
@@ -204,8 +208,7 @@ RSpec.describe Robot do
         context 'one step forward is not on the board' do
           let (:x) { 0 }
 
-          specify { expect{move}.to_not change{x} }
-          specify { expect{move}.to_not change{y} }
+          it_behaves_like 'position is unchanged'
         end
       end
     end
