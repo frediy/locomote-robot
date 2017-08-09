@@ -9,6 +9,35 @@ RSpec.describe Robot do
     subject (:process_command!) { robot.process_command!(command) }
   end
 
+  describe '#placed?' do
+    let (:place) { robot.place(x, y, facing) }
+
+    subject (:placed?) { robot.placed? }
+
+    let (:x) { 0 }
+    let (:y) { 0 }
+    let (:facing) { Robot::NORTH }
+
+    context 'placed at valid position with valid facing' do
+      specify { expect{place}.to change{robot.placed?}.from(false).to(true) }
+    end
+
+    context 'y coordinate not valid' do
+      let (:y) { 8 }
+      it { is_expected.to be false }
+    end
+
+    context 'x coordinate not valid' do
+      let (:x) { 8 }
+      it { is_expected.to be false }
+    end
+
+    context 'facing not valid' do
+      let (:facing) { 'INVALID_FACING'}
+      it { is_expected.to be false }
+    end
+  end
+
   describe '#place' do
     let (:x) { 0 }
     let (:y) { 0 }

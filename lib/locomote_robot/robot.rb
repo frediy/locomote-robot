@@ -17,10 +17,8 @@ class Robot
     end
   end
 
-  def unplaced?
-    @x      == nil ||
-    @y      == nil ||
-    @facing == nil
+  def placed?
+    @x != nil && @y != nil && @facing != nil
   end
 
   def move
@@ -41,7 +39,7 @@ class Robot
   end
 
   def left
-    return if unplaced?
+    return unless placed?
 
     case @facing
     when NORTH
@@ -56,7 +54,7 @@ class Robot
   end
 
   def right
-    return if unplaced?
+    return unless placed?
 
     case @facing
     when NORTH
