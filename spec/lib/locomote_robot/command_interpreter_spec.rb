@@ -34,7 +34,7 @@ RSpec.describe CommandInterpreter do
 
     describe 'REPORT' do
       let (:command) { 'REPORT' }
-      let (:robot) { instance_double(Robot, x: 1, y: 2, facing: Robot::NORTH) }
+      let (:robot) { instance_double(Robot, x: 1, y: 2, facing: Robot::NORTH, placed?: true) }
 
       specify { expect{process_command}.to output("1,2,NORTH\n").to_stdout }
     end
