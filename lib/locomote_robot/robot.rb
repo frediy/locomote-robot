@@ -41,9 +41,7 @@ class Robot
   end
 
   def left
-    # binding.pry
     return if unplaced?
-    # binding.pry
 
     case @facing
     when NORTH
