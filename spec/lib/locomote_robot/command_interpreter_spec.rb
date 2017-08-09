@@ -8,7 +8,6 @@ RSpec.describe CommandInterpreter do
   describe '#process_command' do
     subject (:process_command) { command_interpreter.process_command(command) }
 
-
     describe 'PLACE X,Y,FACING' do
       let (:command) { 'PLACE 0,0,NORTH' }
 
@@ -19,12 +18,18 @@ RSpec.describe CommandInterpreter do
     end
 
     describe 'MOVE' do
+      let (:command) { 'MOVE' }
+      specify { expect(robot).to receive(:move) }
     end
 
     describe 'LEFT' do
+      let (:command) { 'LEFT' }
+      specify { expect(robot).to receive(:left) }
     end
 
     describe 'RIGHT' do
+      let (:command) { 'RIGHT' }
+      specify { expect(robot).to receive(:right) }
     end
 
     describe 'REPORT' do
