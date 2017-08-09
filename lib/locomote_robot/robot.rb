@@ -9,8 +9,7 @@ class Robot
   VALID_FACINGS = [NORTH, EAST, SOUTH, WEST]
 
   def place(x, y, facing)
-    # TODO: refactor conditional to method valid_place?
-    if on_board?(x, y) && valid_facing?(facing) # TODO: add valid_coordinates?(x, y)
+    if valid_place?(x, y, facing)
       @x = x
       @y = y
       @facing = facing
@@ -79,12 +78,19 @@ class Robot
 
 private
 
-  def on_board?(x, y)
-    0 <= x && x <= 4 &&
-    0 <= y && y <= 4
+  def valid_place?(x, y, facing)
+    x.integer? &&
+    y.integer? &&
+    valid_facing?(facing) &&
+    on_board?(x, y)
   end
 
   def valid_facing?(facing)
     VALID_FACINGS.include?(facing)
+  end
+
+  def on_board?(x, y)
+    0 <= x && x <= 4 &&
+    0 <= y && y <= 4
   end
 end
