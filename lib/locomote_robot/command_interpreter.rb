@@ -16,7 +16,9 @@ class CommandInterpreter
     when 'RIGHT'
       @robot.right
     when 'REPORT'
-      puts [@robot.x, @robot.y, @robot.facing].join(',')
+      if @robot.placed?
+        puts [@robot.x, @robot.y, @robot.facing].join(',')
+      end
     end
   end
 

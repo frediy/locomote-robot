@@ -3,6 +3,7 @@
 require "bundler/setup"
 require "locomote_robot"
 
+require 'pry'
 # Valid commands
 
 # PLACE X,Y,FACING
@@ -14,9 +15,12 @@ require "locomote_robot"
 # RIGHT - turn right
 # REPORT - report position to stdout
 
-robot = LocomoteRobot::Robot.new()
+robot = Robot.new()
 command_interpreter = CommandInterpreter.new(robot)
 
-ARGF.each do |command, index|
+command_file_path = ARGV[0]
+commands = File.read(command_file_path).split("\n")
+
+commands.each do |command, index|
   command_interpreter.process_command(command)
 end
