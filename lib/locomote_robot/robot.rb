@@ -30,7 +30,7 @@ class Robot
       new_x += 1
     when SOUTH
       new_y -= 1
-    when WEST
+    else #WEST
       new_x -= 1
     end
 
@@ -47,7 +47,7 @@ class Robot
       @facing = NORTH
     when SOUTH
       @facing = EAST
-    when WEST
+    else #WEST
       @facing = SOUTH
     end
   end
@@ -62,7 +62,7 @@ class Robot
       @facing = SOUTH
     when SOUTH
       @facing = WEST
-    when WEST
+    else #WEST
       @facing = NORTH
     end
   end
